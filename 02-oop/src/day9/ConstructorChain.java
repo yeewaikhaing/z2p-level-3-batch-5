@@ -22,7 +22,7 @@ public class ConstructorChain {
 	public static void main(String[] args) {
 		ConstructorChain obj = new ConstructorChain();
 		
-		Teacher techer = new Teacher("Aung", "tutor");
+		//Teacher techer = new Teacher("Aung", "tutor");
 	}
 	
 }
@@ -50,6 +50,6 @@ class Teacher extends Person {
 	}
 }
 
-class Tutor extends Teacher {
-	
-}
+//class Tutor extends Teacher {
+//	
+//}
