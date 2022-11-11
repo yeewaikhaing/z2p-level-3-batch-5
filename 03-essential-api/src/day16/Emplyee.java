@@ -40,6 +40,12 @@ public class Emplyee {
 	public void setCity(String city) {
 		this.city = city;
 	}
+
+	@Override
+	public String toString() {
+		return "Emplyee [name=" + name + ", salary=" + salary + ", city=" + city + "]";
+	}
+	
 	
 	
 }
