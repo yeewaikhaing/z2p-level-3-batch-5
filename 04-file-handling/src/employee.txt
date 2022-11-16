@@ -1,0 +1,7 @@
+1001	Aung Aung	Mandalay
+1002	Naung Naung	Yangon
+1003	Maung Maung	Yangon
+1004	Jeon	Mandalay
+1005	Cherry	Pyin Oo Lwin
+1006	Yuri	Mandalay
+1007	Hla Hla	Pyin Oo Lwin
