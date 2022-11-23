@@ -3,7 +3,10 @@ package day21;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseService {
 
@@ -88,5 +91,69 @@ public class DatabaseService {
 		pstm.executeUpdate();
 		
 		closeConnection(conn);
+	}
+
+	public static List<Product> findAll() {
+		List<Product> data = new ArrayList<>();
+		
+		try(Connection con = createConnection()) {
+			
+			var query = "SELECT * FROM products";
+			// SELECT id,name,price from products;
+			
+			PreparedStatement pstm = con.prepareStatement(query);
+			
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next())
+			{
+				// create new product object
+				Product prod = new Product();
+				
+				// retrieve from resultset
+				int productId = rs.getInt(1);
+				String productName = rs.getString("name");
+				float price = rs.getFloat("price");
+				
+				//convert column to field
+				prod.setId(productId);
+				prod.setName(productName);
+				prod.setPrice(price);
+				
+				// add to list
+				data.add(prod);
+				
+			}
+			
+			
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return data;
+	}
+
+	public static Product findById(int productId) {
+		Product product = null;
+		try(Connection con = createConnection()) {
+			
+			var query = "SELECT * FROM products WHERE id = ?";
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setInt(1, productId);
+			
+			var rs = pst.executeQuery();
+			if(rs.next()) {
+				product = new Product();
+				product.setId(productId);
+				product.setName(rs.getString("name"));
+				product.setPrice(rs.getFloat("price"));
+			}
+			
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return product;
 	}
 }
