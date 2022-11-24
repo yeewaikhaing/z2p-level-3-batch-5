@@ -32,6 +32,7 @@ public class CRUD_2 {
 				System.out.print("Enter product Id to delete: ");
 				int pId = Integer.parseInt(sc.nextLine());
 				DatabaseService.deleteById(pId);
+				System.out.println("success...");
 			case 5:
 				select(sc);
 				break;
@@ -80,6 +81,37 @@ public class CRUD_2 {
 				System.out.println("Prie: " + prod.getPrice());
 			}
 		}// single product
+		else if(input == 5) {
+			List<Product> list = DatabaseService.getNewArrivals();
+			displayProducts(list);
+		}// new arrival
+		else if(input == 4) {
+			System.out.print("Enter min price: ");
+			float min = Float.parseFloat(sc.nextLine());
+			System.out.print("Enter max price: ");
+			float max = Float.parseFloat(sc.nextLine());
+			
+			List<Product> list = DatabaseService.filterByPrice(min, max);
+			displayProducts(list);
+		}// end of filter by price
+		else if(input == 3) {
+			System.out.print("Enter product name: ");
+			String product_name = sc.nextLine();
+			
+			List<Product> list = DatabaseService.filterByName(product_name);
+			displayProducts(list);
+		}
+		
+	}
+
+	private static void displayProducts(List<Product> list) {
+		System.out.println("No \t Name \t Price");
+		System.out.println("----------------------");
+		for(var i = 0; i < list.size();i++) {
+			var obj = list.get(i);
+			System.out.print((i + 1) + " \t " + obj.getName() + " \t " + obj.getPrice() + " ks.");
+			System.out.println();
+		}
 		
 	}
 

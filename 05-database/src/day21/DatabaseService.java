@@ -156,4 +156,83 @@ public class DatabaseService {
 		
 		return product;
 	}
+
+	public static List<Product> getNewArrivals() {
+		List<Product> list = new ArrayList<>();
+		
+		try(Connection con = createConnection();) {
+			
+			var query = "SELECT id 'productId', name, price FROM products ORDER BY id DESC LIMIT 5";
+			PreparedStatement pstm = con.prepareStatement(query);
+			
+			var rs = pstm.executeQuery();
+			while(rs.next()) {
+				// create object
+				var prod = new Product();
+				// map column to field
+				prod.setId(rs.getInt("productId"));
+				prod.setPrice(rs.getFloat("price"));
+				prod.setName(rs.getString("name"));
+				// add to list
+				list.add(prod);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public static List<Product> filterByPrice(float min, float max) {
+		List<Product> list = new ArrayList<>();
+		
+		try(Connection con = createConnection();) {
+			var query = "SELECT * FROM products WHERE price BETWEEN ? AND ?";
+			//var query = "SELECT * FROM products WHERE price >= ? AND price <= ?";
+			PreparedStatement pstm = con.prepareStatement(query);
+			pstm.setFloat(1, min);
+			pstm.setFloat(2, max);
+			
+			var rs = pstm.executeQuery();
+			while(rs.next()) {
+				// create object
+				var prod = new Product();
+				// map column to field
+				prod.setId(rs.getInt("id"));
+				prod.setPrice(rs.getFloat("price"));
+				prod.setName(rs.getString("name"));
+				// add to list
+				list.add(prod);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public static List<Product> filterByName(String product_name) {
+		List<Product> list = new ArrayList<>();
+		
+		try(Connection con = createConnection();) {
+			var query = "SELECT * FROM products WHERE name LIKE ? ";
+			
+			PreparedStatement pstm = con.prepareStatement(query);
+			pstm.setString(1, "%" + product_name + "%");
+			
+			var rs = pstm.executeQuery();
+			while(rs.next()) {
+				// create object
+				var prod = new Product();
+				// map column to field
+				prod.setId(rs.getInt("id"));
+				prod.setPrice(rs.getFloat("price"));
+				prod.setName(rs.getString("name"));
+				// add to list
+				list.add(prod);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }
