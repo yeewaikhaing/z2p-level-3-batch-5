@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -9,13 +10,16 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 
 public class SignUpController implements Initializable{
@@ -57,7 +61,45 @@ public class SignUpController implements Initializable{
 
     @FXML
     void btn_signup_click(ActionEvent event) {
-
+    	String email = txt_email.getText();
+    	String pass = txt_password.getText();
+    	
+    	String city = cbo_city.getSelectionModel().getSelectedItem();
+    	int city_index = cbo_city.getSelectionModel().getSelectedIndex();
+    	
+    	RadioButton gender = (RadioButton) gender_group.getSelectedToggle();
+    	String gender_val = gender.getText();
+    	
+    	LocalDate birthday = txt_birthday.getValue();
+    	String address = textarea_address.getText();
+    	int salary = Integer.parseInt(txt_salary.getText());
+    	
+    	String skillsets = "";
+    	if(chk_java.isSelected())
+    		skillsets = chk_java.getText() + " ,";
+    	if(chk_nodejs.isSelected())
+    		skillsets += chk_nodejs.getText() + " ,";
+    	if(chk_php.isSelected())
+    		skillsets += chk_php.getText() + " ,";
+    	
+    	String output = "";
+    	output += "Email - " + email + "\n";
+    	output += "Password - " + pass + "\n";
+    	output += "City - " + city + "(index: " + city_index + ")\n";
+    	output += "Gender - " + gender_val + "\n";
+    	output += "Birthday - " + birthday + "\n";
+    	output += "Salary - " + salary + "\n";
+    	output += "Skillsets - " + skillsets.substring(0, skillsets.lastIndexOf(",")) + "\n";
+    	output += "Address - " + address + "\n";
+    	
+    	Alert alert = new Alert(AlertType.INFORMATION);
+    	alert.setHeaderText(null);
+    	alert.setTitle("Message");
+    	alert.setContentText(output);
+    	alert.showAndWait();
+    	
+    	
+    	
     }
 
     @FXML
