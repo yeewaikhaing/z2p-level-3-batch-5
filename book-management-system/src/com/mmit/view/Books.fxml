@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:controller="com.mmit.controller.Book" prefHeight="529.0" prefWidth="793.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+   <children>
+      <Button layoutX="155.0" layoutY="122.0" mnemonicParsing="false" onAction="#btn_add_click" prefHeight="116.0" prefWidth="137.0" style="-fx-background-color: #00ace6;" text="Add" textFill="#f8f6f6">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="318.0" layoutY="121.0" mnemonicParsing="false" onAction="#btn_edit_click" prefHeight="116.0" prefWidth="137.0" style="-fx-background-color: #cc9900;" text="Edit" textFill="#f8f6f6">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="491.0" layoutY="122.0" mnemonicParsing="false" onAction="#btn_delete_click" prefHeight="116.0" prefWidth="137.0" style="-fx-background-color: #ff6633;" text="Delete" textFill="#f8f6f6">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="155.0" layoutY="270.0" mnemonicParsing="false" onAction="#btn_list_click" prefHeight="116.0" prefWidth="137.0" style="-fx-background-color: #666633;" text="List" textFill="#f8f6f6">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="319.0" layoutY="270.0" mnemonicParsing="false" onAction="#btn_search_click" prefHeight="116.0" prefWidth="137.0" style="-fx-background-color: #666699;" text="Search" textFill="#f8f6f6">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="493.0" layoutY="270.0" mnemonicParsing="false" onAction="#btn_back_click" prefHeight="116.0" prefWidth="137.0" style="-fx-background-color: #663300;" text="Back" textFill="#f8f6f6">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="349.0" layoutY="463.0" mnemonicParsing="false" onAction="#btn_logout_click" prefHeight="25.0" prefWidth="95.0" style="-fx-background-color: #808080;" text="LogOut" textFill="#f8f6f6">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Separator layoutX="32.0" layoutY="426.0" prefHeight="12.0" prefWidth="727.0" />
+      <Label layoutX="325.0" layoutY="31.0" text="Book Section" textFill="#096d86">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Separator layoutX="240.0" layoutY="59.0" prefHeight="12.0" prefWidth="284.0" />
+   </children>
+</AnchorPane>

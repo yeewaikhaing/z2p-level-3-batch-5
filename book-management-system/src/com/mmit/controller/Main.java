@@ -1,5 +1,6 @@
 package com.mmit.controller;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import com.mmit.Start;
@@ -13,13 +14,13 @@ import javafx.scene.input.MouseEvent;
 public class Main {
 
 	@FXML
-    void author_click(MouseEvent event) {
-
+    void author_click(MouseEvent event) throws IOException {
+		Start.changeScene("view/Authors.fxml");
     }
 
     @FXML
-    void book_click(MouseEvent event) {
-
+    void book_click(MouseEvent event) throws IOException {
+    	Start.changeScene("view/Books.fxml");
     }
 
     @FXML
@@ -30,13 +31,13 @@ public class Main {
     }
 
     @FXML
-    void category_click(MouseEvent event) {
-
+    void category_click(MouseEvent event) throws IOException {
+    	Start.changeScene("view/Categories.fxml");
     }
 
     @FXML
-    void user_click(MouseEvent event) {
-
+    void user_click(MouseEvent event) throws IOException {
+    	Start.changeScene("view/users.fxml");
     }
 
 	

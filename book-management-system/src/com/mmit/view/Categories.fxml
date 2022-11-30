@@ -10,19 +10,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="546.0" prefWidth="842.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+<AnchorPane fx:controller="com.mmit.controller.Category" prefHeight="546.0" prefWidth="842.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ScrollPane layoutX="302.0" layoutY="47.0" prefHeight="383.0" prefWidth="500.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TableView prefHeight="377.0" prefWidth="500.0">
+                  <TableView fx:id="tbl_categories" prefHeight="377.0" prefWidth="500.0">
                     <columns>
-                      <TableColumn prefWidth="48.0" text="Id" />
-                      <TableColumn prefWidth="185.0" text="Name" />
-                        <TableColumn prefWidth="128.0" text="created_at" />
-                        <TableColumn prefWidth="143.0" text="created_by" />
+                      <TableColumn fx:id="col_id" prefWidth="48.0" text="Id" />
+                      <TableColumn fx:id="col_name" prefWidth="185.0" text="Name" />
+                        <TableColumn fx:id="col_created_at" prefWidth="128.0" text="created_at" />
+                        <TableColumn fx:id="col_created_by" prefWidth="143.0" text="created_by" />
                     </columns>
                   </TableView>
                </children>
@@ -31,8 +30,8 @@
       </ScrollPane>
       <Pane layoutX="5.0" layoutY="47.0" prefHeight="383.0" prefWidth="286.0" style="-fx-background-color: #d1e0e0#d1e0e0;">
          <children>
-            <TextField layoutX="14.0" layoutY="45.0" prefHeight="42.0" prefWidth="251.0" promptText="Category" />
-            <Button layoutX="25.0" layoutY="117.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: #00ace6#00ace6;" text="Add" textFill="#f8f7f7">
+            <TextField fx:id="txt_category" layoutX="14.0" layoutY="45.0" prefHeight="42.0" prefWidth="251.0" promptText="Category" />
+            <Button layoutX="25.0" layoutY="117.0" mnemonicParsing="false" onAction="#btn_add_click" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: #00ace6;" text="Add" textFill="#f8f7f7">
                <font>
                   <Font size="15.0" />
                </font>
@@ -40,7 +39,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="140.0" layoutY="117.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: #cc9900#cc9900;" text="Edit" textFill="#f8f7f7">
+            <Button layoutX="140.0" layoutY="117.0" mnemonicParsing="false" onAction="#btn_edit_click" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: #cc9900;" text="Edit" textFill="#f8f7f7">
                <font>
                   <Font size="15.0" />
                </font>
@@ -48,7 +47,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="25.0" layoutY="171.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: #ff6633#ff6633;" text="Delete" textFill="#f8f7f7">
+            <Button layoutX="25.0" layoutY="171.0" mnemonicParsing="false" onAction="#btn_delete_click" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: #ff6633;" text="Delete" textFill="#f8f7f7">
                <font>
                   <Font size="15.0" />
                </font>
@@ -56,7 +55,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="140.0" layoutY="171.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: #663300#663300;" text="Back" textFill="#f8f7f7">
+            <Button layoutX="140.0" layoutY="171.0" mnemonicParsing="false" onAction="#btn_back_click" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: #663300;" text="Back" textFill="#f8f7f7">
                <font>
                   <Font size="15.0" />
                </font>
@@ -66,7 +65,7 @@
             </Button>
          </children>
       </Pane>
-      <Button layoutX="389.0" layoutY="478.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: #808080#808080;" text="LogOut" textFill="#f8f7f7">
+      <Button layoutX="389.0" layoutY="478.0" mnemonicParsing="false" onAction="#btn_logout_click" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: #808080;" text="LogOut" textFill="#f8f7f7">
          <font>
             <Font size="15.0" />
          </font>

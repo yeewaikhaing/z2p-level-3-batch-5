@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:controller="com.mmit.controller.BookList" prefHeight="595.0" prefWidth="907.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+   <children>
+      <Label layoutX="31.0" layoutY="39.0" text="Book List" textFill="#096d86">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="31.0" layoutY="78.0" prefHeight="413.0" prefWidth="845.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="tbl_books" layoutX="-10.0" layoutY="-3.0" prefHeight="413.0" prefWidth="852.0">
+                    <columns>
+                      <TableColumn fx:id="col_id" prefWidth="63.0" text="Id" />
+                      <TableColumn fx:id="col_title" prefWidth="211.0" text="Title" />
+                        <TableColumn fx:id="col_price" prefWidth="110.0" text="Price" />
+                        <TableColumn fx:id="col_author" prefWidth="165.0" text="Author" />
+                        <TableColumn fx:id="col_category" prefWidth="135.0" text="Category" />
+                        <TableColumn fx:id="col_created_by" prefWidth="150.0" text="Created By" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button layoutX="368.0" layoutY="516.0" mnemonicParsing="false" onAction="#btn_back_click" prefHeight="30.0" prefWidth="88.0" style="-fx-background-color: #663300#663300;" text="Back" textFill="#eeeaea">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="476.0" layoutY="516.0" mnemonicParsing="false" onAction="#btn_logout_click" prefHeight="30.0" prefWidth="88.0" style="-fx-background-color: #808080#808080;" text="LogOut" textFill="#eeeaea">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
