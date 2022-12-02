@@ -3,6 +3,8 @@ package com.mmit;
 import java.io.IOException;
 import java.util.Optional;
 
+import com.mmit.model.User;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -17,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 public class Start extends Application {
 	
 	private static Stage orignal_stage;
+	public static User loginUser = null;
 	
 	@Override
 	public void start(Stage primaryStage) {
