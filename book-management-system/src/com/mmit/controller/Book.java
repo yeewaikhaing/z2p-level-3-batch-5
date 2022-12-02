@@ -22,13 +22,15 @@ public class Book {
 	    }
 
 	    @FXML
-	    void btn_delete_click(ActionEvent event) {
+	    void btn_delete_click(ActionEvent event) throws IOException {
 
+	    	Start.changeScene("view/BookEdit.fxml");
 	    }
 
 	    @FXML
-	    void btn_edit_click(ActionEvent event) {
+	    void btn_edit_click(ActionEvent event) throws IOException {
 
+	    	Start.changeScene("view/BookEdit.fxml");
 	    }
 
 	    @FXML
@@ -44,7 +46,8 @@ public class Book {
 	    }
 
 	    @FXML
-	    void btn_search_click(ActionEvent event) {
+	    void btn_search_click(ActionEvent event) throws IOException {
 
+	    	Start.changeScene("view/BookSearch.fxml");
 	    }
 }

@@ -28,7 +28,7 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Pane layoutX="5.0" layoutY="47.0" prefHeight="383.0" prefWidth="286.0" style="-fx-background-color: #d1e0e0#d1e0e0;">
+      <Pane layoutX="5.0" layoutY="47.0" prefHeight="383.0" prefWidth="286.0" style="-fx-background-color: #d1e0e0;">
          <children>
             <TextField fx:id="txt_category" layoutX="14.0" layoutY="45.0" prefHeight="42.0" prefWidth="251.0" promptText="Category" />
             <Button layoutX="25.0" layoutY="117.0" mnemonicParsing="false" onAction="#btn_add_click" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: #00ace6;" text="Add" textFill="#f8f7f7">
