@@ -1,0 +1,22 @@
+Author
+	-CRUD
+Category
+	- CRUD
+Book
+	- CRUD
+	- Search
+User
+	- CRUD
+	
+-------------
+Inner Join
+	- return matched data of both tables.
+	- need matched condition (n - 1) when n tables are joined.
+
+SELECT *
+FROM table1, table2, table 3
+WHERE table1.col = table2.col AND table1.col = table3.col AND
+ table1.name = 'juice'
+ 
+ SELECT * FROM authors, users
+WHERE authors.created_by = users.id
