@@ -1,15 +1,21 @@
 package com.mmit.controller;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import com.mmit.Start;
+import com.mmit.model.Book;
+import com.mmit.model.DatabaseHandler;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class BookList {
+public class BookList implements Initializable{
 
 	@FXML
     private TableColumn<?, ?> col_author;
@@ -42,4 +48,12 @@ public class BookList {
 
     	System.exit(0);
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+
+		List<Book> list = DatabaseHandler.findAllBooks();
+		
+	}
 }

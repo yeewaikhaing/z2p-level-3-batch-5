@@ -41,5 +41,9 @@ public class Author {
 		this.created_by = created_by;
 	}
 	
+	public String getEntryBy() {
+		return this.created_by.getUserName();
+	}
+	
 	
 }
