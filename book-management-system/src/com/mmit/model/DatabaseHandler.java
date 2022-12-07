@@ -183,11 +183,11 @@ public class DatabaseHandler {
 		List<Book> list = new ArrayList<>();
 		try(Connection con = createConnection()) {
 			var query = """
-					SELECT books.*, authors.name, categories.name, users.user_name 
+					SELECT books.*, authors.name 'authorName', categories.name 'categoryName', users.user_name 
 					FROM authors, books, categories, users
 					WHERE books.author_id = authors.id && 
 					books.category_id = categories.id && 
-					books.created_by = users.id;
+					books.created_by = users.id
 					""";
 			var pstm = con.prepareStatement(query);
 			var rs = pstm.executeQuery();
@@ -202,9 +202,89 @@ public class DatabaseHandler {
 				
 				var cat = new Category();
 				cat.setId(rs.getInt("category_id"));
-				cat.setName(rs.getString("name"));
+				cat.setName(rs.getString("categoryName"));
 				
 				book.setCategory(cat);
+				
+				var author = new Author();
+				author.setId(rs.getInt("author_id"));
+				author.setName(rs.getString("authorName"));
+				
+				book.setAuthor(author);
+				
+				var createdBy = new User();
+				createdBy.setId(rs.getInt("created_by"));
+				createdBy.setUserName(rs.getString("user_name"));
+				
+				book.setCreated_by(createdBy);
+				
+				// add to list
+				list.add(book);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public static List<Book> searchBook(String category, String author, String title) {
+		List<Book> list = new ArrayList<>();
+ 		
+		try (Connection con = createConnection()){
+			var query = """
+					SELECT books.*, authors.name 'authorName', categories.name 'categoryName' 
+					FROM authors, books, categories
+					WHERE books.author_id = authors.id && 
+					books.category_id = categories.id
+					""";
+			
+			List<String> params = new ArrayList<>();
+			
+	 		if(!category.isEmpty()) {
+				query += " AND categories.name LIKE ?";
+				params.add("%" + category + "%");
+			}
+	 		
+	 		if(! author.isEmpty()) {
+	 			query += " AND authors.name LIKE ?";
+	 			params.add("%" + author + "%");
+	 		}
+	 		
+	 		if(! title.isEmpty()) {
+	 			query += " AND books.title LIKE ?";
+	 			params.add("%" + title + "%");
+	 		}
+	 		System.out.println("query ==> " + query);
+	 		var pstm = con.prepareStatement(query);
+	 		// assign value to query parameters
+	 		for(var i = 0; i < params.size(); i++) {
+	 			pstm.setObject( (i + 1), params.get(i));
+	 		}
+	 		
+	 		var rs = pstm.executeQuery();
+	 		while(rs.next()) {
+				// create book
+				var book = new Book();
+				// assign data
+				book.setCode(rs.getInt("code"));
+				book.setTitle(rs.getString("title"));
+				book.setPrice(rs.getFloat("price"));
+				book.setPublish_date(LocalDate.parse(rs.getString("publish_date")));
+				
+				var cat = new Category();
+				cat.setId(rs.getInt("category_id"));
+				cat.setName(rs.getString("categoryName"));
+				
+				book.setCategory(cat);
+				
+				var auth = new Author();
+				auth.setId(rs.getInt("author_id"));
+				auth.setName(rs.getString("authorName"));
+				
+				book.setAuthor(auth);
+				
+		
+				
 				// add to list
 				list.add(book);
 			}
@@ -212,6 +292,83 @@ public class DatabaseHandler {
 			// TODO: handle exception
 		}
 		return list;
+	}
+
+	public static Book findBookById(int code) {
+		Book book = null;
+		try(Connection con = createConnection()) {
+			var query = """
+					SELECT books.*, authors.name 'authorName', categories.name 'categoryName' 
+					FROM authors, books, categories
+					WHERE books.author_id = authors.id && 
+					books.category_id = categories.id && books.code = ?
+					""";
+			var pstm = con.prepareStatement(query);
+			pstm.setInt(1, code);
+			
+			var rs = pstm.executeQuery();
+			if(rs.next()) {
+				book = new Book();
+				
+				// assign data
+				book.setCode(rs.getInt("code"));
+				book.setTitle(rs.getString("title"));
+				book.setPrice(rs.getFloat("price"));
+				book.setPublish_date(LocalDate.parse(rs.getString("publish_date")));
+				
+				var cat = new Category();
+				cat.setId(rs.getInt("category_id"));
+				cat.setName(rs.getString("categoryName"));
+				
+				book.setCategory(cat);
+				
+				var auth = new Author();
+				auth.setId(rs.getInt("author_id"));
+				auth.setName(rs.getString("authorName"));
+				
+				book.setAuthor(auth);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return book;
+	}
+
+	public static void updateBook(Book book) throws Exception {
+		try(Connection con = createConnection()) {
+			var query = """
+					UPDATE books
+					SET title = ?, price = ?, category_id = ?, author_id = ?
+					WHERE code = ?
+					""";
+			var pstm = con.prepareStatement(query);
+			pstm.setString(1, book.getTitle());
+			pstm.setFloat(2, book.getPrice());
+			pstm.setInt(3, book.getCategory().getId());
+			pstm.setInt(4, book.getAuthor().getId());
+			pstm.setInt(5, book.getCode());
+			
+			pstm.executeUpdate();
+
+		} catch (Exception e) {
+			throw e;
+		}
+		
+	}
+
+	public static void deleteBookById(int code) throws Exception {
+		
+		try (Connection con = createConnection()){
+			var query = "DELETE FROM books WHERE code = ?";
+			var pstm = con.prepareStatement(query);
+			pstm.setInt(1, code);
+			
+			pstm.executeUpdate();
+			
+		} catch (Exception e) {
+			throw e;
+		}
+		
 	}
 	
 //	public static void main(String[] args) throws SQLException {

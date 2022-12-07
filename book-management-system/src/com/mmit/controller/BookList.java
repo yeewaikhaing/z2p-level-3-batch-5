@@ -9,34 +9,36 @@ import com.mmit.Start;
 import com.mmit.model.Book;
 import com.mmit.model.DatabaseHandler;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class BookList implements Initializable{
 
 	@FXML
-    private TableColumn<?, ?> col_author;
+    private TableColumn<Book, String> col_author;
 
     @FXML
-    private TableColumn<?, ?> col_category;
+    private TableColumn<Book, String> col_category;
 
     @FXML
-    private TableColumn<?, ?> col_created_by;
+    private TableColumn<Book, String> col_created_by;
 
     @FXML
-    private TableColumn<?, ?> col_id;
+    private TableColumn<Book, Integer> col_id;
 
     @FXML
-    private TableColumn<?, ?> col_price;
+    private TableColumn<Book, Float> col_price;
 
     @FXML
-    private TableColumn<?, ?> col_title;
+    private TableColumn<Book, String> col_title;
 
     @FXML
-    private TableView<?> tbl_books;
+    private TableView<Book> tbl_books;
 
     @FXML
     void btn_back_click(ActionEvent event) throws IOException {
@@ -51,9 +53,18 @@ public class BookList implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
 
+		col_id.setCellValueFactory(new PropertyValueFactory<>("code"));
+		col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
+		col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+		col_created_by.setCellValueFactory(new PropertyValueFactory<>("entryBy"));
+		col_author.setCellValueFactory(new PropertyValueFactory<>("authorName"));
+		col_category.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
+		
+		
 		List<Book> list = DatabaseHandler.findAllBooks();
+		
+		tbl_books.setItems(FXCollections.observableArrayList(list));
 		
 	}
 }
